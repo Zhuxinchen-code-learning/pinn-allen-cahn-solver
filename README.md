@@ -64,10 +64,22 @@ The `data/` and `figures/` folders are generated when the FDM experiment is run.
 pip install -r requirements.txt
 ```
 
+On this Windows machine, use `py -3` if `python` does not print anything:
+
+```powershell
+py -3 -m pip install -r requirements.txt
+```
+
 ## Run the FDM Baseline
 
 ```bash
 python experiments/run_fdm.py
+```
+
+or on this Windows machine:
+
+```powershell
+py -3 -u experiments/run_fdm.py
 ```
 
 This creates:
@@ -90,6 +102,30 @@ Periodic boundaries are implemented with cyclic array shifts.
 The discrete energy approximates `E[u] = integral [epsilon^2 / 2 * |u_x|^2 + 1/4 * (u^2 - 1)^2] dx`.
 
 The energy curve should generally decrease over time, which confirms that the baseline is capturing the dissipative behavior of the Allen-Cahn equation.
+
+## Results
+
+The first FDM baseline run produced a stable solution with monotonically decreasing energy:
+
+```text
+snapshots: (201, 256)
+initial energy: 0.38980238
+final energy: 0.20684054
+energy change: -0.18296184
+monotone energy steps: 100.00%
+```
+
+### FDM Solution Heatmap
+
+![FDM solution heatmap](figures/fdm_solution.png)
+
+### Solution Profiles
+
+![FDM solution profiles](figures/fdm_profiles.png)
+
+### Energy Decay
+
+![Energy decay curve](figures/energy_decay.png)
 
 ## Next Steps
 
