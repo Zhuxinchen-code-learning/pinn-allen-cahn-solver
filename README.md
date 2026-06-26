@@ -8,28 +8,13 @@ For the 1D Allen-Cahn equation, how do a traditional finite difference method an
 
 ## Equation
 
-```text
-u_t = epsilon^2 u_xx + u - u^3
-```
+The equation is `u_t = epsilon^2 u_xx + u - u^3`.
 
-Domain:
+Domain: `x in [-1, 1]`, `t in [0, T]`.
 
-```text
-x in [-1, 1], t in [0, T]
-```
+Periodic boundary conditions: `u(-1, t) = u(1, t)` and `u_x(-1, t) = u_x(1, t)`.
 
-Periodic boundary conditions:
-
-```text
-u(-1, t) = u(1, t)
-u_x(-1, t) = u_x(1, t)
-```
-
-Initial condition:
-
-```text
-u(x, 0) = 0.5 sin(pi x)
-```
+Initial condition: `u(x, 0) = 0.5 sin(pi x)`.
 
 ## Current Stage
 
@@ -94,27 +79,15 @@ This creates:
 
 ## Baseline Method
 
-The solver uses a second-order central difference for the spatial Laplacian:
+The solver uses a second-order central difference for the spatial Laplacian: `u_xx ~= (u[i+1] - 2u[i] + u[i-1]) / dx^2`.
 
-```text
-u_xx ~= (u[i+1] - 2u[i] + u[i-1]) / dx^2
-```
-
-and explicit Euler time stepping:
-
-```text
-u^{n+1} = u^n + dt * (epsilon^2 u_xx^n + u^n - (u^n)^3)
-```
+It uses explicit Euler time stepping: `u^{n+1} = u^n + dt * (epsilon^2 u_xx^n + u^n - (u^n)^3)`.
 
 Periodic boundaries are implemented with cyclic array shifts.
 
 ## Energy
 
-The discrete energy approximates
-
-```text
-E[u] = integral [epsilon^2 / 2 * |u_x|^2 + 1/4 * (u^2 - 1)^2] dx.
-```
+The discrete energy approximates `E[u] = integral [epsilon^2 / 2 * |u_x|^2 + 1/4 * (u^2 - 1)^2] dx`.
 
 The energy curve should generally decrease over time, which confirms that the baseline is capturing the dissipative behavior of the Allen-Cahn equation.
 
