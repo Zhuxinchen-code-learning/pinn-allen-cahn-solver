@@ -6,17 +6,7 @@ This project studies numerical and neural-network-based solvers for the 1D Allen
 
 ## 2. Allen-Cahn Equation
 
-We solve
-
-```text
-u_t = epsilon^2 u_xx + u - u^3
-```
-
-on `x in [-1, 1]` and `t in [0, T]`, with periodic boundary conditions and initial condition
-
-```text
-u(x, 0) = 0.5 sin(pi x).
-```
+We solve `u_t = epsilon^2 u_xx + u - u^3` on `x in [-1, 1]` and `t in [0, T]`, with periodic boundary conditions and initial condition `u(x, 0) = 0.5 sin(pi x)`.
 
 ## 3. Finite Difference Baseline
 
@@ -24,11 +14,7 @@ The baseline uses a second-order central finite difference for `u_xx` and explic
 
 ## 4. Energy Stability
 
-The Allen-Cahn energy is
-
-```text
-E[u] = integral [epsilon^2 / 2 * |u_x|^2 + 1/4 * (u^2 - 1)^2] dx.
-```
+The Allen-Cahn energy is `E[u] = integral [epsilon^2 / 2 * |u_x|^2 + 1/4 * (u^2 - 1)^2] dx`.
 
 For a stable dissipative simulation, this energy should generally decrease over time.
 
